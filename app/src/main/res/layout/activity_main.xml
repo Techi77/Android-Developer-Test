@@ -156,7 +156,7 @@
         <Button
             android:id="@+id/bt_change_currency_gbp"
             style="@style/bt_change_currency"
-            android:text="@string/£_GBP"
+            android:text="@string/GBP"
             android:theme="@style/bt_change_currency_active"
             app:layout_constraintEnd_toStartOf="@+id/bt_change_currency_eur"
             app:layout_constraintHorizontal_bias="0.5"
@@ -167,7 +167,7 @@
         <Button
             android:id="@+id/bt_change_currency_eur"
             style="@style/bt_change_currency"
-            android:text="@string/€_EUR"
+            android:text="@string/EUR"
             android:textColor="@color/text_grey"
             android:theme="@style/bt_change_currency_inactive"
             app:layout_constraintEnd_toStartOf="@+id/bt_change_currency_rub"
@@ -178,7 +178,7 @@
         <Button
             android:id="@+id/bt_change_currency_rub"
             style="@style/bt_change_currency"
-            android:text="@string/₽_RUB"
+            android:text="@string/RUB"
             android:textColor="@color/text_grey"
             android:theme="@style/bt_change_currency_inactive"
             app:layout_constraintEnd_toEndOf="@+id/cl_card_container"
@@ -191,9 +191,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/card_background"
             android:paddingHorizontal="22dp"
             android:paddingVertical="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/cl_card_container"
             app:layout_constraintStart_toStartOf="@+id/cl_card_container"
             app:layout_constraintTop_toBottomOf="@id/bt_change_currency_gbp">
@@ -203,9 +205,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/History"
-                android:textSize="17sp"
                 android:textColor="@color/text_black"
-                android:textStyle="bold"/>
+                android:textSize="17sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
