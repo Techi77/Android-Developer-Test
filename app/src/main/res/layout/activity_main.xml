@@ -1,18 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_grey"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_header"
+            style="@style/header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/main_title"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toTopOf="@id/container" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_card_container"
+            android:layout_width="330dp"
+            android:layout_height="225dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/card_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingHorizontal="22dp"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/tv_header">
+
+            <ImageView
+                android:id="@+id/iv_mastercard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_mastercard"
+                app:layout_constraintBottom_toTopOf="@+id/iv_profile"
+                app:layout_constraintStart_toStartOf="@+id/cl_card_container"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="@string/custom_card_number"
+                android:textColor="@color/text_black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_mastercard"
+                app:layout_constraintStart_toEndOf="@id/iv_mastercard"
+                app:layout_constraintTop_toTopOf="@+id/iv_mastercard" />
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_profile"
+                app:layout_constraintBottom_toTopOf="@+id/custom_balance_in_currency"
+                app:layout_constraintStart_toStartOf="@id/cl_card_container"
+                app:layout_constraintTop_toBottomOf="@+id/iv_mastercard" />
+
+            <TextView
+                android:id="@+id/tv_custom_user"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:gravity="start"
+                android:text="@string/custom_user"
+                android:textColor="@color/text_grey"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+            <TextView
+                android:id="@+id/tv_valid_thru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/VALID_THRU"
+                android:textColor="@color/text_grey"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_valid_thru_num"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_custom_user"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/tv_valid_thru_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/custom_VALID_THRU_num"
+                android:textColor="@color/text_grey"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_custom_user"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_valid_thru" />
+
+            <TextView
+                android:id="@+id/custom_balance_in_currency"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="@string/custom_balance_in_currency"
+                android:textColor="@color/text_black"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/cl_card_container"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+            <TextView
+                android:id="@+id/your_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Your_balance"
+                android:textColor="@color/text_grey"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toTopOf="@+id/your_balance_usd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/custom_balance_in_currency" />
+
+            <TextView
+                android:id="@+id/your_balance_usd"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/custom_balance_USD"
+                android:textAlignment="textEnd"
+                android:textColor="@color/text_black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/custom_balance_in_currency"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/your_balance" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_change_currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/Change_currency"
+            android:textColor="@color/text_black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/cl_card_container"
+            app:layout_constraintTop_toBottomOf="@+id/cl_card_container" />
+
+        <Button
+            android:id="@+id/bt_change_currency_gbp"
+            style="@style/bt_change_currency"
+            android:text="@string/£_GBP"
+            android:theme="@style/bt_change_currency_active"
+            app:layout_constraintEnd_toStartOf="@+id/bt_change_currency_eur"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@+id/cl_card_container"
+            app:layout_constraintTop_toBottomOf="@+id/tv_change_currency" />
+
+        <Button
+            android:id="@+id/bt_change_currency_eur"
+            style="@style/bt_change_currency"
+            android:text="@string/€_EUR"
+            android:textColor="@color/text_grey"
+            android:theme="@style/bt_change_currency_inactive"
+            app:layout_constraintEnd_toStartOf="@+id/bt_change_currency_rub"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/bt_change_currency_gbp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_change_currency" />
+
+        <Button
+            android:id="@+id/bt_change_currency_rub"
+            style="@style/bt_change_currency"
+            android:text="@string/₽_RUB"
+            android:textColor="@color/text_grey"
+            android:theme="@style/bt_change_currency_inactive"
+            app:layout_constraintEnd_toEndOf="@+id/cl_card_container"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/bt_change_currency_eur"
+            app:layout_constraintTop_toBottomOf="@+id/tv_change_currency" />
+
+        <LinearLayout
+            android:id="@+id/ll_history_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/card_background"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="20dp"
+            app:layout_constraintEnd_toEndOf="@id/cl_card_container"
+            app:layout_constraintStart_toStartOf="@+id/cl_card_container"
+            app:layout_constraintTop_toBottomOf="@id/bt_change_currency_gbp">
+
+            <TextView
+                android:id="@+id/tv_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/History"
+                android:textSize="17sp"
+                android:textColor="@color/text_black"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Android Developer Test</string>
+    <string name="main_title">Главная</string>
+    <string name="custom_card_number">0000 0000 0000 0000</string>
+    <string name="custom_user">Anton Ivanov Alexandrovich</string>
+    <string name="VALID_THRU">VALID THRU</string>
+    <string name="custom_VALID_THRU_num">12/22</string>
+    <string name="custom_balance_in_currency">£2 125,12</string>
+    <string name="Your_balance">Your balance</string>
+    <string name="custom_balance_USD">$2 617.14</string>
+    <string name="Change_currency">Change currency</string>
+    <string name="£_GBP">£\nGBP</string>
+    <string name="€_EUR">€\nEUR</string>
+    <string name="₽_RUB">₽\nRUB</string>
+    <string name="History">History</string>
 </resources>
