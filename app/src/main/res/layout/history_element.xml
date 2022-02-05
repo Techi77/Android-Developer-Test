@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginVertical="15dp"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/history_icon"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/history_image_background"
+        android:padding="8dp"
+        android:src="@drawable/ic_cart"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toTopOf="@id/price_in_currency"
+        app:layout_constraintBottom_toBottomOf="@+id/price"/>
+
+    <TextView
+        android:id="@+id/firm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        android:text="@string/history_custom_firm"
+        android:textColor="@color/text_black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/date"
+        app:layout_constraintStart_toEndOf="@id/history_icon"
+        app:layout_constraintTop_toTopOf="@+id/history_icon"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/history_custom_date"
+        android:textColor="@color/text_grey"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/history_icon"
+        app:layout_constraintStart_toStartOf="@+id/firm"
+        app:layout_constraintTop_toBottomOf="@+id/firm" />
+
+    <TextView
+        android:id="@+id/price_in_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/history_price_in_currency"
+        android:textColor="@color/text_black"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintTop_toTopOf="@id/container" />
+
+    <TextView
+        android:id="@+id/currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/history_GBP"
+        android:textColor="@color/text_grey"
+        android:textSize="22sp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toStartOf="@id/price_in_currency"
+        app:layout_constraintTop_toTopOf="@id/container" />
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/history_price"
+        android:textColor="@color/text_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/currency"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

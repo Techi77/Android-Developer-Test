@@ -195,6 +195,7 @@
             android:background="@drawable/card_background"
             android:paddingHorizontal="22dp"
             android:paddingVertical="20dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/cl_card_container"
             app:layout_constraintStart_toStartOf="@+id/cl_card_container"
@@ -204,10 +205,17 @@
                 android:id="@+id/tv_history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/History"
+                android:text="@string/history_title"
                 android:textColor="@color/text_black"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="18dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/history_element"/>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
