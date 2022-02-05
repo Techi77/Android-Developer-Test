@@ -1,39 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_grey"
     tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/tv_header"
+        style="@style/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/main_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tv_header"
-            style="@style/header"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/main_title"
-            app:layout_constraintEnd_toEndOf="@id/container"
-            app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toTopOf="@id/container" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_card_container"
             android:layout_width="330dp"
             android:layout_height="225dp"
-            android:layout_marginTop="24dp"
             android:background="@drawable/card_background"
             android:clickable="true"
             android:focusable="true"
             android:paddingHorizontal="22dp"
             app:layout_constraintEnd_toEndOf="@id/container"
             app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toBottomOf="@id/tv_header">
+            app:layout_constraintTop_toTopOf="@id/container">
 
             <ImageView
                 android:id="@+id/iv_custom_card_icon"
@@ -191,12 +198,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="64dp"
             android:background="@drawable/card_background"
+            android:orientation="vertical"
             android:paddingHorizontal="22dp"
             android:paddingVertical="20dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/container"
             app:layout_constraintEnd_toEndOf="@id/cl_card_container"
             app:layout_constraintStart_toStartOf="@+id/cl_card_container"
             app:layout_constraintTop_toBottomOf="@id/bt_change_currency_gbp">
@@ -205,20 +212,22 @@
                 android:id="@+id/tv_history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
                 android:text="@string/history_title"
                 android:textColor="@color/text_black"
                 android:textSize="17sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="18dp"/>
+                android:textStyle="bold" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/history_element"/>
+                tools:listitem="@layout/history_element" />
 
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
