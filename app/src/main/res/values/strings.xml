@@ -4,12 +4,12 @@
     <!--activity_main-->
     <string name="main_title">Главная</string>
     <string name="custom_card_number">0000 0000 0000 0000</string>
-    <string name="custom_user">Anton Ivanov</string>
+    <string name="custom_user">Custom User</string>
     <string name="VALID_THRU">VALID THRU</string>
-    <string name="custom_VALID_THRU_num">12/22</string>
-    <string name="custom_balance_in_currency">£2 125,12</string>
+    <string name="custom_VALID_THRU_num">01/01</string>
+    <string name="custom_balance_in_currency">£0,00</string>
     <string name="Your_balance">Your balance</string>
-    <string name="custom_balance_USD">$2 617.14</string>
+    <string name="custom_balance">$0.00</string>
     <string name="Change_currency">Change currency</string>
     <string name="GBP">£\nGBP</string>
     <string name="EUR">€\nEUR</string>
@@ -24,4 +24,7 @@
     <string name="history_RUB">- ₽</string>
     <string name="history_price_in_currency">7.99</string>
     <string name="history_price">$ 9.85</string>
+
+    <!--my_cards-->
+    <string name="my_cards_title">Мои карты</string>
 </resources>

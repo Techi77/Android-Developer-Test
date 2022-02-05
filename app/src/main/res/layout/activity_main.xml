@@ -36,10 +36,10 @@
             app:layout_constraintTop_toBottomOf="@id/tv_header">
 
             <ImageView
-                android:id="@+id/iv_mastercard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_mastercard"
+                android:id="@+id/iv_custom_card_icon"
+                android:layout_width="39dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_custom_card_system"
                 app:layout_constraintBottom_toTopOf="@+id/iv_profile"
                 app:layout_constraintStart_toStartOf="@+id/cl_card_container"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -53,9 +53,9 @@
                 android:textColor="@color/text_black"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_mastercard"
-                app:layout_constraintStart_toEndOf="@id/iv_mastercard"
-                app:layout_constraintTop_toTopOf="@+id/iv_mastercard" />
+                app:layout_constraintBottom_toBottomOf="@+id/iv_custom_card_icon"
+                app:layout_constraintStart_toEndOf="@id/iv_custom_card_icon"
+                app:layout_constraintTop_toTopOf="@+id/iv_custom_card_icon" />
 
             <ImageView
                 android:id="@+id/iv_profile"
@@ -64,7 +64,7 @@
                 android:src="@drawable/ic_profile"
                 app:layout_constraintBottom_toTopOf="@+id/custom_balance_in_currency"
                 app:layout_constraintStart_toStartOf="@id/cl_card_container"
-                app:layout_constraintTop_toBottomOf="@+id/iv_mastercard" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_custom_card_icon" />
 
             <TextView
                 android:id="@+id/tv_custom_user"
@@ -129,7 +129,7 @@
                 android:id="@+id/your_balance_usd"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="@string/custom_balance_USD"
+                android:text="@string/custom_balance"
                 android:textAlignment="textEnd"
                 android:textColor="@color/text_black"
                 android:textSize="18sp"

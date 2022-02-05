@@ -4,17 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2085" />
+        <entry key="app/src/main/res/drawable/active_card_mark.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/bt_change_currency_background.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/bt_change_currency_background_active.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/bt_change_currency_background_inactive.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/card_background.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/history_image_background.xml" value="0.2085" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/ic_cart.xml" value="0.2085" />
+        <entry key="app/src/main/res/drawable/ic_custom_card_system.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.2085" />
+        <entry key="app/src/main/res/drawable/inactive_card_mark.xml" value="0.2085" />
         <entry key="app/src/main/res/layout-v28/activity_main.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31768035888671875" />
         <entry key="app/src/main/res/layout/history_element.xml" value="0.8692799886067709" />
+        <entry key="app/src/main/res/layout/my_cards.xml" value="0.3441665649414062" />
+        <entry key="app/src/main/res/layout/my_cards_element.xml" value="0.5813222249348958" />
       </map>
     </option>
   </component>
