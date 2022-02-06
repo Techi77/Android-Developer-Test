@@ -1,6 +1,8 @@
 package com.example.androiddevelopertest.FragmentMain.Retrofit
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +13,17 @@ import com.example.androiddevelopertest.R
 import com.example.androiddevelopertest.databinding.HistoryElementBinding
 import com.squareup.picasso.Picasso
 
-class Adapter(private val context: Context,private val historyInfoList: MutableList<CardsInfo>):RecyclerView.Adapter<Adapter.MyViewHolder>() {
+class Adapter(private val context: Context,private val historyInfoList: Users):RecyclerView.Adapter<Adapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val binding = HistoryElementBinding.bind(itemView)
 
         val image: ImageView = binding.historyIcon
-        val txt_firm: TextView = binding.firm
-        val txt_date: TextView = binding.date
-        val txt_price: TextView = binding.price
+        val txt_firm: TextView = binding.historyFirm
+        val txt_date: TextView = binding.historyDate
+        val txt_price: TextView = binding.historyPrice
+        val txt_currency: TextView = binding.historyCurrency
+        val txt_price_in_currency: TextView = binding.historyPriceInCurrency
 
     }
 
@@ -28,14 +32,21 @@ class Adapter(private val context: Context,private val historyInfoList: MutableL
         return MyViewHolder(itemView)
     }
 
-    override fun getItemCount() = historyInfoList.size
+    override fun getItemCount(): Int {
+        Log.e(TAG, "historyInfoList")
+        Log.e(TAG, historyInfoList.toString())
+        Log.e(TAG, historyInfoList.users[0].transaction_history.size.toString())
+        return historyInfoList.users[0].transaction_history.size
+    }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        //Picasso.get().load(historyInfoList[position].transaction_history).into(holder.image)
-        holder.txt_firm.text = historyInfoList[position].cardholder_name
-        holder.txt_date.text = historyInfoList[position].cardholder_name
-        holder.txt_price.text = historyInfoList[position].cardholder_name
+        Picasso.get().load(historyInfoList.users[0].transaction_history[position].icon_url).into(holder.image)
+        holder.txt_firm.text = historyInfoList.users[0].transaction_history[position].title
+        holder.txt_date.text = historyInfoList.users[0].transaction_history[position].date
+        holder.txt_price.text = historyInfoList.users[0].transaction_history[position].amount
+        holder.txt_currency.text = "some currency"
+        holder.txt_price_in_currency.text = "some price"
     }
 
 }

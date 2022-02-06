@@ -1,23 +1,26 @@
 package com.example.androiddevelopertest.FragmentMain.Retrofit
 
+data class Users(
+    var users: MutableList<CardsInfo>,
+)
+
 data class CardsInfo(
-    var card_number: String? = null,
-    var type: String? = null,
-    var cardholder_name: String? = null,
-    var valid: String? = null,
-    var balance: String? = null,
-    var transaction_history: String? = null,
-    var users: String? = null
+    var card_number: String?,
+    var type: String? ,
+    var cardholder_name: String? ,
+    var valid: String? ,
+    var balance: String? ,
+    var transaction_history: MutableList<HistoryInfo> ,
+    var users: String?
 )
 
 data class HistoryInfo(
-    var title: String? = null,
-    var icon_url: String? = null,
-    var date: String? = null,
-    var amount: String? = null,
+    var title: String? ,
+    var icon_url: String? ,
+    var date: String? ,
+    var amount: String? ,
 )
 
-class Person(val users: String)
 /*
 users{
     card_number - номер карты клиента

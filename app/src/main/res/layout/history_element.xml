@@ -15,35 +15,35 @@
         android:padding="8dp"
         android:src="@drawable/ic_cart"
         app:layout_constraintStart_toStartOf="@id/container"
-        app:layout_constraintTop_toTopOf="@id/price_in_currency"
-        app:layout_constraintBottom_toBottomOf="@+id/price"/>
+        app:layout_constraintTop_toTopOf="@id/history_price_in_currency"
+        app:layout_constraintBottom_toBottomOf="@+id/history_price"/>
 
     <TextView
-        android:id="@+id/firm"
+        android:id="@+id/history_firm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="17dp"
         android:text="@string/history_custom_firm"
         android:textColor="@color/text_black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/date"
+        app:layout_constraintBottom_toTopOf="@+id/history_date"
         app:layout_constraintStart_toEndOf="@id/history_icon"
         app:layout_constraintTop_toTopOf="@+id/history_icon"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/history_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/history_custom_date"
         android:textColor="@color/text_grey"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/history_icon"
-        app:layout_constraintStart_toStartOf="@+id/firm"
-        app:layout_constraintTop_toBottomOf="@+id/firm" />
+        app:layout_constraintStart_toStartOf="@+id/history_firm"
+        app:layout_constraintTop_toBottomOf="@+id/history_firm" />
 
     <TextView
-        android:id="@+id/price_in_currency"
+        android:id="@+id/history_price_in_currency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/history_price_in_currency"
@@ -54,24 +54,24 @@
         app:layout_constraintTop_toTopOf="@id/container" />
 
     <TextView
-        android:id="@+id/currency"
+        android:id="@+id/history_currency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/history_GBP"
         android:textColor="@color/text_grey"
         android:textSize="22sp"
         android:layout_marginRight="10dp"
-        app:layout_constraintEnd_toStartOf="@id/price_in_currency"
+        app:layout_constraintEnd_toStartOf="@id/history_price_in_currency"
         app:layout_constraintTop_toTopOf="@id/container" />
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/history_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/history_price"
         android:textColor="@color/text_grey"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@id/container"
-        app:layout_constraintTop_toBottomOf="@id/currency"/>
+        app:layout_constraintTop_toBottomOf="@id/history_currency"/>
 
 
 

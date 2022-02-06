@@ -1,12 +1,11 @@
 package com.example.androiddevelopertest
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.androiddevelopertest.FragmentMain.Retrofit.Adapter
-import com.example.androiddevelopertest.FragmentMain.Retrofit.Common
-import com.example.androiddevelopertest.FragmentMain.Retrofit.RetrofitServices
-import com.example.androiddevelopertest.FragmentMain.Retrofit.CardsInfo
+import com.example.androiddevelopertest.FragmentMain.Retrofit.*
 import com.example.androiddevelopertest.databinding.ActivityMainBinding
 
 import retrofit2.Call
@@ -28,22 +27,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         mService = Common.retrofitService
+
         binding.recyclerView.setHasFixedSize(true)
         layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
 
-        getAllMovieList()
+        getHistoryList()
     }
 
-    private fun getAllMovieList() {
-        //dialog.show()
-        mService.getCardsData().enqueue(object : Callback<MutableList<CardsInfo>> {
-            override fun onFailure(call: Call<MutableList<CardsInfo>>, t: Throwable) {
+    private fun getHistoryList() {
+        mService.getCardsData().enqueue(object : Callback<Users> {
+            override fun onFailure(call: Call<Users>, t: Throwable) {
 
             }
 
-            override fun onResponse(call: Call<MutableList<CardsInfo>>, response: Response<MutableList<CardsInfo>>) {
-                adapter = Adapter(baseContext, response.body() as MutableList<CardsInfo>)
+            override fun onResponse(call: Call<Users>, response: Response<Users>) {
+                Log.e(TAG, "response")
+                Log.e(TAG, response.toString())
+                adapter = Adapter(baseContext, response.body() as Users)
                 adapter.notifyDataSetChanged()
                 binding.recyclerView.adapter = adapter
             }
