@@ -1,20 +1,15 @@
-package com.example.androiddevelopertest.FragmentMain.Retrofit
+package com.example.androiddevelopertest.HistoryRecycler
 
-import android.content.ContentValues.TAG
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androiddevelopertest.R
+import com.example.androiddevelopertest.FragmentMain.Retrofit.Users
 import com.example.androiddevelopertest.databinding.HistoryElementBinding
 import com.squareup.picasso.Picasso
 
-class Adapter(private val context: Context,private val historyInfoList: Users):RecyclerView.Adapter<Adapter.MyViewHolder>() {
+class Adapter(private val historyInfoList: Users):RecyclerView.Adapter<Adapter.MyViewHolder>() {
 
     class MyViewHolder(binding: HistoryElementBinding): RecyclerView.ViewHolder(binding.root){
 
@@ -28,7 +23,6 @@ class Adapter(private val context: Context,private val historyInfoList: Users):R
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.history_element, parent, false)
         return MyViewHolder(HistoryElementBinding.inflate(LayoutInflater.from(parent.context)))
     }
 

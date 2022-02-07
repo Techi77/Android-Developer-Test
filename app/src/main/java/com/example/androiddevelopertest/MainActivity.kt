@@ -1,11 +1,10 @@
 package com.example.androiddevelopertest
 
-import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androiddevelopertest.FragmentMain.Retrofit.*
+import com.example.androiddevelopertest.HistoryRecycler.Adapter
 import com.example.androiddevelopertest.databinding.ActivityMainBinding
 
 import retrofit2.Call
@@ -42,8 +41,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<Users>, response: Response<Users>) {
-                adapter = Adapter(baseContext, response.body() as Users)
+                val cardBase = response.body() as Users
+                adapter = Adapter(response.body() as Users)
                 binding.recyclerView.adapter = adapter
+                binding.cardNumber.text = cardBase.users[0].card_number
+                binding.tvCustomUser.text = cardBase.users[0].cardholder_name
+                binding.tvValidThruNum.text = cardBase.users[0].valid
+                binding.yourBalanceUsd.text = cardBase.users[0].balance
             }
         })
     }
