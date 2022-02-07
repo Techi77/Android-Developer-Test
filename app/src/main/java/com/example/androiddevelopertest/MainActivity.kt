@@ -113,12 +113,11 @@ class MainActivity : AppCompatActivity() {
         binding.tvCustomUser.text = cardBase.users[prefs.cardUserNumber].cardholder_name
         binding.tvValidThruNum.text = cardBase.users[prefs.cardUserNumber].valid
         binding.yourBalanceUsd.text = "$" + cardBase.users[prefs.cardUserNumber].balance
-        var balanceInUSD: Double? = cardBase.users[prefs.cardUserNumber].balance
-        var USDCource: Double? = currencyBase.Valute.USD.Value
+        val balanceInUSD: Double? = cardBase.users[prefs.cardUserNumber].balance
+        val USDCource: Double? = currencyBase.Valute.USD.Value
         val balanceInRUB = balanceInUSD?.times(USDCource!!)
         val balanceInGBP = balanceInRUB?.div(currencyBase.Valute.GBP.Value!!)
         val balanceInEUR = balanceInRUB?.div(currencyBase.Valute.EUR.Value!!)
-        Log.e(TAG, balanceInRUB.toString())
         binding.customBalanceInCurrency.text = when(prefs.customCurrency.toString()){
             "GBP" -> "£ " + String.format("%.2f", balanceInGBP)
             "EUR" -> "€ " + String.format("%.2f", balanceInEUR)

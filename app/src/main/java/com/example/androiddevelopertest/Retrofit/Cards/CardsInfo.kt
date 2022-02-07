@@ -18,7 +18,7 @@ data class HistoryInfo(
     var title: String? ,
     var icon_url: String? ,
     var date: String? ,
-    var amount: String? ,
+    var amount: Double? ,
 )
 
 /*
