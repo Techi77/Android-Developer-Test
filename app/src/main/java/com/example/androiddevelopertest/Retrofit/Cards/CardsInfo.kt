@@ -1,4 +1,4 @@
-package com.example.androiddevelopertest.FragmentMain.Retrofit
+package com.example.androiddevelopertest.Retrofit
 
 data class Users(
     var users: MutableList<CardsInfo>,

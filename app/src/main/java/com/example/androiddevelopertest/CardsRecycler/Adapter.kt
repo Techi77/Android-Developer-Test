@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androiddevelopertest.FragmentMain.Retrofit.Users
-import com.example.androiddevelopertest.PreferenceHelper
+import com.example.androiddevelopertest.Retrofit.Users
 import com.example.androiddevelopertest.PreferenceHelper.cardUserNumber
 import com.example.androiddevelopertest.R
 import com.example.androiddevelopertest.databinding.MyCardsElementBinding

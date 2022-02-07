@@ -5,11 +5,10 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.androiddevelopertest.FragmentMain.Retrofit.Common
-import com.example.androiddevelopertest.FragmentMain.Retrofit.RetrofitServices
-import com.example.androiddevelopertest.FragmentMain.Retrofit.Users
+import com.example.androiddevelopertest.Retrofit.Cards.Common
+import com.example.androiddevelopertest.Retrofit.RetrofitServices
+import com.example.androiddevelopertest.Retrofit.Users
 import com.example.androiddevelopertest.CardsRecycler.Adapter
-import com.example.androiddevelopertest.PreferenceHelper.cardUserNumber
 import com.example.androiddevelopertest.databinding.MyCardsBinding
 import retrofit2.Call
 import retrofit2.Callback

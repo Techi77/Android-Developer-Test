@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androiddevelopertest.FragmentMain.Retrofit.Users
+import com.example.androiddevelopertest.Retrofit.Users
 import com.example.androiddevelopertest.databinding.HistoryElementBinding
 import com.squareup.picasso.Picasso
 

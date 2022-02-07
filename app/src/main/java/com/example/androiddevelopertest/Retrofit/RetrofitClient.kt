@@ -1,4 +1,4 @@
-package com.example.androiddevelopertest.FragmentMain.Retrofit
+package com.example.androiddevelopertest.Retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
