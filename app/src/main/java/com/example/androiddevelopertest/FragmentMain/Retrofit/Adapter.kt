@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androiddevelopertest.R
 import com.example.androiddevelopertest.databinding.HistoryElementBinding
@@ -15,8 +16,7 @@ import com.squareup.picasso.Picasso
 
 class Adapter(private val context: Context,private val historyInfoList: Users):RecyclerView.Adapter<Adapter.MyViewHolder>() {
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val binding = HistoryElementBinding.bind(itemView)
+    class MyViewHolder(binding: HistoryElementBinding): RecyclerView.ViewHolder(binding.root){
 
         val image: ImageView = binding.historyIcon
         val txt_firm: TextView = binding.historyFirm
@@ -29,7 +29,7 @@ class Adapter(private val context: Context,private val historyInfoList: Users):R
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.my_cards, parent, false)
-        return MyViewHolder(itemView)
+        return MyViewHolder(HistoryElementBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun getItemCount(): Int {
@@ -45,8 +45,6 @@ class Adapter(private val context: Context,private val historyInfoList: Users):R
         holder.txt_firm.text = historyInfoList.users[0].transaction_history[position].title
         holder.txt_date.text = historyInfoList.users[0].transaction_history[position].date
         holder.txt_price.text = historyInfoList.users[0].transaction_history[position].amount
-        holder.txt_currency.text = "some currency"
-        holder.txt_price_in_currency.text = "some price"
     }
 
 }
