@@ -1,22 +1,31 @@
 package com.example.androiddevelopertest.CardsRecycler
 
+import android.content.SharedPreferences
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androiddevelopertest.FragmentMain.Retrofit.Users
+import com.example.androiddevelopertest.PreferenceHelper
+import com.example.androiddevelopertest.PreferenceHelper.cardUserNumber
 import com.example.androiddevelopertest.R
 import com.example.androiddevelopertest.databinding.MyCardsElementBinding
 
-class Adapter(private val historyInfoList: Users):RecyclerView.Adapter<Adapter.MyViewHolder>() {
+class Adapter(private val historyInfoList: Users, prefs: SharedPreferences):RecyclerView.Adapter<Adapter.MyViewHolder>() {
+
+   val prefs = prefs
 
     class MyViewHolder(binding: MyCardsElementBinding): RecyclerView.ViewHolder(binding.root){
 
         val cardNumber: TextView = binding.tvCustomCardNumber
         val cardIcon: ImageView = binding.ivCustomCardIcon
         val cardActiveStatus: ImageView = binding.customCardActiveStatus
+
+        val container: View = binding.container
 
     }
 
@@ -38,7 +47,10 @@ class Adapter(private val historyInfoList: Users):RecyclerView.Adapter<Adapter.M
                 else -> R.drawable.ic_custom_card_system
             }
         )
-        holder.cardActiveStatus.isVisible = position==0
+        holder.cardActiveStatus.isVisible = position==prefs.cardUserNumber
+        holder.container.setOnClickListener {
+            prefs.cardUserNumber = position
+        }
     }
 
 }

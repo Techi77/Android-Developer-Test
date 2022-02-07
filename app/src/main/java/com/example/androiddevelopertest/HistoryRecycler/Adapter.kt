@@ -9,7 +9,8 @@ import com.example.androiddevelopertest.FragmentMain.Retrofit.Users
 import com.example.androiddevelopertest.databinding.HistoryElementBinding
 import com.squareup.picasso.Picasso
 
-class Adapter(private val historyInfoList: Users):RecyclerView.Adapter<Adapter.MyViewHolder>() {
+class Adapter(private val historyInfoList: Users, cardUserNum: Int):RecyclerView.Adapter<Adapter.MyViewHolder>() {
+    val cardUserNumber = cardUserNum
 
     class MyViewHolder(binding: HistoryElementBinding): RecyclerView.ViewHolder(binding.root){
 
@@ -32,10 +33,10 @@ class Adapter(private val historyInfoList: Users):RecyclerView.Adapter<Adapter.M
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        Picasso.get().load(historyInfoList.users[0].transaction_history[position].icon_url).into(holder.image)
-        holder.txt_firm.text = historyInfoList.users[0].transaction_history[position].title
-        holder.txt_date.text = historyInfoList.users[0].transaction_history[position].date
-        holder.txt_price.text = historyInfoList.users[0].transaction_history[position].amount
+        Picasso.get().load(historyInfoList.users[cardUserNumber].transaction_history[position].icon_url).into(holder.image)
+        holder.txt_firm.text = historyInfoList.users[cardUserNumber].transaction_history[position].title
+        holder.txt_date.text = historyInfoList.users[cardUserNumber].transaction_history[position].date
+        holder.txt_price.text = historyInfoList.users[cardUserNumber].transaction_history[position].amount
     }
 
 }

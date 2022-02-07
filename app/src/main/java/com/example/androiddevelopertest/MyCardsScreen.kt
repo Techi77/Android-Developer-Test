@@ -1,6 +1,7 @@
 package com.example.androiddevelopertest
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import com.example.androiddevelopertest.FragmentMain.Retrofit.Common
 import com.example.androiddevelopertest.FragmentMain.Retrofit.RetrofitServices
 import com.example.androiddevelopertest.FragmentMain.Retrofit.Users
 import com.example.androiddevelopertest.CardsRecycler.Adapter
+import com.example.androiddevelopertest.PreferenceHelper.cardUserNumber
 import com.example.androiddevelopertest.databinding.MyCardsBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,6 +17,8 @@ import retrofit2.Response
 
 class MyCardsScreen: AppCompatActivity() {
     private lateinit var binding: MyCardsBinding
+
+    private val PREFS_NAME = "Saved_params"
 
     lateinit var mService: RetrofitServices
     lateinit var layoutManager: LinearLayoutManager
@@ -26,6 +30,8 @@ class MyCardsScreen: AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        val prefs = PreferenceHelper.customPreference(this, PREFS_NAME)
+
         mService = Common.retrofitService
         layoutManager = LinearLayoutManager(this)
 
@@ -33,14 +39,14 @@ class MyCardsScreen: AppCompatActivity() {
         binding.recyclerViewHistory.setHasFixedSize(true)
         binding.recyclerViewHistory.layoutManager = layoutManager
 
-        getHistoryList()
+        getHistoryList(prefs)
 
         binding.btBack.setOnClickListener {
             val intent = Intent(this@MyCardsScreen, MainActivity::class.java)
             startActivity(intent)
         }
     }
-    private fun getHistoryList() {
+    private fun getHistoryList(prefs: SharedPreferences) {
         mService.getCardsData().enqueue(object : Callback<Users> {
             override fun onFailure(call: Call<Users>, t: Throwable) {
 
@@ -48,7 +54,7 @@ class MyCardsScreen: AppCompatActivity() {
 
             override fun onResponse(call: Call<Users>, response: Response<Users>) {
                 val cardBase = response.body() as Users
-                adapter = Adapter(cardBase)
+                adapter = Adapter(cardBase, prefs)
                 binding.recyclerViewHistory.adapter = adapter
             }
         })
