@@ -42,10 +42,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<Users>, response: Response<Users>) {
-                Log.e(TAG, "response")
-                Log.e(TAG, response.toString())
                 adapter = Adapter(baseContext, response.body() as Users)
-                adapter.notifyDataSetChanged()
                 binding.recyclerView.adapter = adapter
             }
         })

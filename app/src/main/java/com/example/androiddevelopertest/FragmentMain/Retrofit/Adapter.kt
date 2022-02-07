@@ -28,14 +28,11 @@ class Adapter(private val context: Context,private val historyInfoList: Users):R
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.my_cards, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.history_element, parent, false)
         return MyViewHolder(HistoryElementBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun getItemCount(): Int {
-        Log.e(TAG, "historyInfoList")
-        Log.e(TAG, historyInfoList.toString())
-        Log.e(TAG, historyInfoList.users[0].transaction_history.size.toString())
         return historyInfoList.users[0].transaction_history.size
     }
 

@@ -19,6 +19,7 @@
         <entry key="app/src/main/res/layout-v28/activity_main.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31768035888671875" />
         <entry key="app/src/main/res/layout/history_element.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/jkvhkjhv.xml" value="0.25" />
         <entry key="app/src/main/res/layout/my_cards.xml" value="0.3441665649414062" />
         <entry key="app/src/main/res/layout/my_cards_element.xml" value="0.5813222249348958" />
       </map>
@@ -33,7 +34,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.1" />
+        <option name="scale" value="0.24010416666666667" />
       </ProjectState>
     </option>
   </component>
