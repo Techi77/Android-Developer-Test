@@ -4,7 +4,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 
-interface RetrofitServices {
+interface RetrofitServicesCurrency {
     @GET("daily_json.js")
-    fun getCardsData(): Call<Date>
+    fun getCurrencyData(): Call<Date>
 }

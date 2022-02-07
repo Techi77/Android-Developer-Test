@@ -5,8 +5,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.androiddevelopertest.Retrofit.Cards.Common
-import com.example.androiddevelopertest.Retrofit.RetrofitServices
+import com.example.androiddevelopertest.Retrofit.Cards.CommonCards
+import com.example.androiddevelopertest.Retrofit.RetrofitServicesCards
 import com.example.androiddevelopertest.Retrofit.Users
 import com.example.androiddevelopertest.CardsRecycler.Adapter
 import com.example.androiddevelopertest.databinding.MyCardsBinding
@@ -19,7 +19,7 @@ class MyCardsScreen: AppCompatActivity() {
 
     private val PREFS_NAME = "Saved_params"
 
-    lateinit var mService: RetrofitServices
+    lateinit var mService: RetrofitServicesCards
     lateinit var layoutManager: LinearLayoutManager
     lateinit var adapter: Adapter
 
@@ -31,7 +31,7 @@ class MyCardsScreen: AppCompatActivity() {
 
         val prefs = PreferenceHelper.customPreference(this, PREFS_NAME)
 
-        mService = Common.retrofitService
+        mService = CommonCards.retrofitServiceCards
         layoutManager = LinearLayoutManager(this)
 
         //History recycler

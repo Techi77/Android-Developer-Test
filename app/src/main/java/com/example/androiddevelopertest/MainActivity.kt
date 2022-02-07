@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androiddevelopertest.Retrofit.*
 import com.example.androiddevelopertest.HistoryRecycler.Adapter
 import com.example.androiddevelopertest.PreferenceHelper.cardUserNumber
-import com.example.androiddevelopertest.Retrofit.Cards.Common
+import com.example.androiddevelopertest.PreferenceHelper.customCurrency
+import com.example.androiddevelopertest.Retrofit.Cards.CommonCards
+import com.example.androiddevelopertest.Retrofit.Currency.CommonCurrency
+import com.example.androiddevelopertest.Retrofit.Currency.Date
+import com.example.androiddevelopertest.Retrofit.Currency.RetrofitServicesCurrency
 import com.example.androiddevelopertest.databinding.ActivityMainBinding
 
 import retrofit2.Call
@@ -21,7 +25,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    lateinit var mService: RetrofitServices
+    lateinit var mServiceCards: RetrofitServicesCards
+    lateinit var mServiceCurrency: RetrofitServicesCurrency
+
     lateinit var layoutManager: LinearLayoutManager
     lateinit var adapter: Adapter
 
@@ -33,7 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         val prefs = PreferenceHelper.customPreference(this, PREFS_NAME)
 
-        mService = Common.retrofitService
+        mServiceCards = CommonCards.retrofitServiceCards
+        mServiceCurrency = CommonCurrency.retrofitServiceCurrency
         layoutManager = LinearLayoutManager(this)
 
         //History recycler
@@ -46,20 +53,34 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, MyCardsScreen::class.java)
             startActivity(intent)
         }
+        binding.btChangeCurrencyGbp.setOnClickListener {
+            prefs.customCurrency = "R01035"
+            getHistoryList(prefs)
+        }
+        binding.btChangeCurrencyEur.setOnClickListener {
+            prefs.customCurrency = "R01239"
+            getHistoryList(prefs)
+        }
+        binding.btChangeCurrencyRub.setOnClickListener {
+            prefs.customCurrency = "R01090B"
+            getHistoryList(prefs)
+        }
+        fun changeCurrencyBtColor(num: Int) {
+        }
     }
 
     private fun getHistoryList(prefs: SharedPreferences) {
-        mService.getCardsData().enqueue(object : Callback<Users> {
+        mServiceCards.getCardsData().enqueue(object : Callback<Users> {
             override fun onFailure(call: Call<Users>, t: Throwable) {
 
             }
 
             override fun onResponse(call: Call<Users>, response: Response<Users>) {
                 val cardBase = response.body() as Users
-                adapter = Adapter(response.body() as Users, prefs.cardUserNumber)
+                adapter = Adapter(cardBase, prefs.cardUserNumber, prefs.customCurrency.toString())
                 binding.recyclerViewHistory.adapter = adapter
                 binding.ivCustomCardIcon.setImageResource(
-                    when(cardBase.users[prefs.cardUserNumber].type){
+                    when (cardBase.users[prefs.cardUserNumber].type) {
                         "mastercard" -> R.drawable.ic_mastercard
                         "visa" -> R.drawable.ic_visa
                         "unionpay" -> R.drawable.ic_unionpay
@@ -69,7 +90,13 @@ class MainActivity : AppCompatActivity() {
                 binding.cardNumber.text = cardBase.users[prefs.cardUserNumber].card_number
                 binding.tvCustomUser.text = cardBase.users[prefs.cardUserNumber].cardholder_name
                 binding.tvValidThruNum.text = cardBase.users[prefs.cardUserNumber].valid
-                binding.yourBalanceUsd.text = cardBase.users[prefs.cardUserNumber].balance
+                binding.yourBalanceUsd.text = "$" + cardBase.users[prefs.cardUserNumber].balance
+                binding.customBalanceInCurrency.text = when(prefs.customCurrency.toString()){
+                    "R01035" -> "£"
+                    "R01239" -> "€"
+                    "R01090B" -> "₽"
+                    else -> "- £"
+                }
             }
         })
     }

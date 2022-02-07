@@ -4,7 +4,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 
-interface RetrofitServices {
+interface RetrofitServicesCards {
     @GET("users.json")
     fun getCardsData(): Call<Users>
 }

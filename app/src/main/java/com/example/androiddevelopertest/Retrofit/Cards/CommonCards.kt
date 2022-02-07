@@ -2,10 +2,10 @@ package com.example.androiddevelopertest.Retrofit.Cards
 
 import com.example.androiddevelopertest.Retrofit.CARDS_URL
 import com.example.androiddevelopertest.Retrofit.RetrofitClient
-import com.example.androiddevelopertest.Retrofit.RetrofitServices
+import com.example.androiddevelopertest.Retrofit.RetrofitServicesCards
 
-object Common {
-    val retrofitService: RetrofitServices
+object CommonCards {
+    val retrofitServiceCards: RetrofitServicesCards
         get() = RetrofitClient.getClient(CARDS_URL)
-            .create(RetrofitServices::class.java)
+            .create(RetrofitServicesCards::class.java)
 }
