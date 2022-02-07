@@ -50,6 +50,7 @@ class Adapter(private val historyInfoList: Users, prefs: SharedPreferences):Recy
         holder.cardActiveStatus.isVisible = position==prefs.cardUserNumber
         holder.container.setOnClickListener {
             prefs.cardUserNumber = position
+            notifyDataSetChanged()
         }
     }
 
