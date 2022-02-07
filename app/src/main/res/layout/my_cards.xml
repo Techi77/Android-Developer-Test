@@ -16,15 +16,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <FrameLayout
         android:id="@+id/bt_back"
-        android:layout_width="15dp"
+        android:layout_width="wrap_content"
         android:layout_height="15dp"
-        android:layout_marginLeft="17dp"
-        android:src="@drawable/ic_back"
         app:layout_constraintBottom_toBottomOf="@id/tv_header_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_header_title" />
+        app:layout_constraintTop_toTopOf="@id/tv_header_title">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="17dp"
+        android:src="@drawable/ic_back"
+        android:layout_gravity="center"
+         />
+    </FrameLayout>
 
 
     <ScrollView
