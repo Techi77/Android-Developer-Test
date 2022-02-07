@@ -24,6 +24,7 @@
     <style name="bt_change_currency_active">
         <item name="colorPrimary">@color/main_blue</item>
     </style>
+
     <style name="bt_change_currency_inactive">
         <item name="colorPrimary">@color/white</item>
     </style>

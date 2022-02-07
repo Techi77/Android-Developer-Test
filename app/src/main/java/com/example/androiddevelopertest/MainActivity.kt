@@ -16,7 +16,6 @@ import com.example.androiddevelopertest.Retrofit.Currency.CommonCurrency
 import com.example.androiddevelopertest.Retrofit.Currency.Date
 import com.example.androiddevelopertest.Retrofit.Currency.RetrofitServicesCurrency
 import com.example.androiddevelopertest.databinding.ActivityMainBinding
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerViewHistory.layoutManager = layoutManager
 
         getHistoryList(prefs)
+        setActiveButton(prefs)
 
         binding.clCardContainer.setOnClickListener {
             val intent = Intent(this@MainActivity, MyCardsScreen::class.java)
@@ -58,16 +58,25 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btChangeCurrencyGbp.setOnClickListener {
             prefs.customCurrency = "GBP"
+            setActiveButton(prefs)
             getHistoryList(prefs)
         }
         binding.btChangeCurrencyEur.setOnClickListener {
             prefs.customCurrency = "EUR"
+            setActiveButton(prefs)
             getHistoryList(prefs)
         }
         binding.btChangeCurrencyRub.setOnClickListener {
             prefs.customCurrency = "RUB"
+            setActiveButton(prefs)
             getHistoryList(prefs)
         }
+    }
+
+    fun setActiveButton(prefs: SharedPreferences) {
+        binding.btChangeCurrencyGbp.setTextColor(resources.getColor(if (prefs.customCurrency == "GBP") R.color.main_blue else R.color.text_grey))
+        binding.btChangeCurrencyEur.setTextColor(resources.getColor(if (prefs.customCurrency == "EUR") R.color.main_blue else R.color.text_grey))
+        binding.btChangeCurrencyRub.setTextColor(resources.getColor(if (prefs.customCurrency == "RUB") R.color.main_blue else R.color.text_grey))
     }
 
     private fun getHistoryList(prefs: SharedPreferences) {
@@ -84,6 +93,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
     private fun getCurrencyList(prefs: SharedPreferences, cardBase: Users) {
         mServiceCurrency.getCurrencyData().enqueue(object : Callback<Date> {
             override fun onFailure(call: Call<Date>, t: Throwable) {
@@ -94,13 +104,23 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Date>, response: Response<Date>) {
                 val currencyBase = response.body() as Date
                 //val currencyValue = currencyBase.Valute.AUD.Value
-                adapter = Adapter(cardBase, currencyBase, prefs.cardUserNumber, prefs.customCurrency.toString())
+                adapter = Adapter(
+                    cardBase,
+                    currencyBase,
+                    prefs.cardUserNumber,
+                    prefs.customCurrency.toString()
+                )
                 binding.recyclerViewHistory.adapter = adapter
-                changingActivityMain(prefs,cardBase,currencyBase)
+                changingActivityMain(prefs, cardBase, currencyBase)
             }
         })
     }
-    private fun changingActivityMain (prefs: SharedPreferences, cardBase: Users, currencyBase: Date){
+
+    private fun changingActivityMain(
+        prefs: SharedPreferences,
+        cardBase: Users,
+        currencyBase: Date
+    ) {
         binding.ivCustomCardIcon.setImageResource(
             when (cardBase.users[prefs.cardUserNumber].type) {
                 "mastercard" -> R.drawable.ic_mastercard
@@ -118,7 +138,7 @@ class MainActivity : AppCompatActivity() {
         val balanceInRUB = balanceInUSD?.times(USDCource!!)
         val balanceInGBP = balanceInRUB?.div(currencyBase.Valute.GBP.Value!!)
         val balanceInEUR = balanceInRUB?.div(currencyBase.Valute.EUR.Value!!)
-        binding.customBalanceInCurrency.text = when(prefs.customCurrency.toString()){
+        binding.customBalanceInCurrency.text = when (prefs.customCurrency.toString()) {
             "GBP" -> "£ " + String.format("%.2f", balanceInGBP)
             "EUR" -> "€ " + String.format("%.2f", balanceInEUR)
             "RUB" -> "₽ " + String.format("%.2f", balanceInRUB)
