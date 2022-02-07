@@ -116,12 +116,14 @@ class MainActivity : AppCompatActivity() {
         var balanceInUSD: Double? = cardBase.users[prefs.cardUserNumber].balance
         var USDCource: Double? = currencyBase.Valute.USD.Value
         val balanceInRUB = balanceInUSD?.times(USDCource!!)
+        val balanceInGBP = balanceInRUB?.div(currencyBase.Valute.GBP.Value!!)
+        val balanceInEUR = balanceInRUB?.div(currencyBase.Valute.EUR.Value!!)
         Log.e(TAG, balanceInRUB.toString())
         binding.customBalanceInCurrency.text = when(prefs.customCurrency.toString()){
-            "GBP" -> "£"
-            "EUR" -> "€"
-            "RUB" -> "₽"
-            else -> "- £"
+            "GBP" -> "£ " + String.format("%.2f", balanceInGBP)
+            "EUR" -> "€ " + String.format("%.2f", balanceInEUR)
+            "RUB" -> "₽ " + String.format("%.2f", balanceInRUB)
+            else -> "£ " + String.format("%.2f", balanceInGBP)
         }
     }
 }
