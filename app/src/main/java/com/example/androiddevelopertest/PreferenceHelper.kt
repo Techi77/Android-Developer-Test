@@ -25,7 +25,7 @@ object PreferenceHelper {
             }
         }
     var SharedPreferences.customCurrency
-        get() = getString(CUSTOMCURRENCY, "R01035")
+        get() = getString(CUSTOMCURRENCY, "GBP")
         set(value) {
             editMe {
                 it.putString(CUSTOMCURRENCY, value)

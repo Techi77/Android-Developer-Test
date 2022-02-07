@@ -5,22 +5,24 @@ data class Date(
     var PreviousDate: String?,
     var PreviousURL: String?,
     var Timestamp: String?,
-    var Valute: MutableList<AUD>,
+    var Valute: Currency,
 )
 
-data class AUD(
-    var AUD: MutableList<SomeCurrency>,
+data class Currency(
+    var USD: SomeCurrency,
+    var EUR: SomeCurrency,
+    var GBP: SomeCurrency,
 )
 
-data class SomeCurrency (
+data class SomeCurrency(
     var ID: String?,
     var NumCode: String?,
     var CharCode: String?,
     var Nominal: String?,
     var Name: String?,
-    var Value: String?,
+    var Value: Double?,
     var Previous: String?,
-        )
+)
 /*
 {
     "Date": "2020-07-28T11:30:00+03:00",
@@ -40,3 +42,4 @@ data class SomeCurrency (
     }
     }
 }*/
+

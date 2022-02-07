@@ -11,7 +11,7 @@ import com.example.androiddevelopertest.Retrofit.Users
 import com.example.androiddevelopertest.databinding.HistoryElementBinding
 import com.squareup.picasso.Picasso
 
-class Adapter(private val historyInfoList: Users, cardUserNum: Int, currency: String):RecyclerView.Adapter<Adapter.MyViewHolder>() {
+class Adapter(private val historyInfoList: Users, private val currencyInfoList: Date, cardUserNum: Int, currency: String):RecyclerView.Adapter<Adapter.MyViewHolder>() {
     val cardUserNumber = cardUserNum
     val currency = currency
 
@@ -41,10 +41,16 @@ class Adapter(private val historyInfoList: Users, cardUserNum: Int, currency: St
         holder.txt_date.text = historyInfoList.users[cardUserNumber].transaction_history[position].date
         holder.txt_price.text = historyInfoList.users[cardUserNumber].transaction_history[position].amount
         holder.txt_currency.text = when(currency){
-            "R01035" -> "- £"
-            "R01239" -> "- €"
-            "R01090B" -> "- ₽"
-            else -> R.string.history_GBP.toString()
+            "GBP" -> "- £"
+            "EUR" -> "- €"
+            "RUB" -> "- ₽"
+            else -> "- £"
+        }
+        holder.txt_price_in_currency.text = when(currency){
+            "GBP" -> "-"
+            "EUR" -> "-"
+            "RUB" -> "-"
+            else -> "-"
         }
 
     }

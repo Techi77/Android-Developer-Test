@@ -1,23 +1,26 @@
 package com.example.androiddevelopertest
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.androiddevelopertest.Retrofit.*
 import com.example.androiddevelopertest.HistoryRecycler.Adapter
 import com.example.androiddevelopertest.PreferenceHelper.cardUserNumber
 import com.example.androiddevelopertest.PreferenceHelper.customCurrency
+import com.example.androiddevelopertest.Retrofit.*
 import com.example.androiddevelopertest.Retrofit.Cards.CommonCards
 import com.example.androiddevelopertest.Retrofit.Currency.CommonCurrency
 import com.example.androiddevelopertest.Retrofit.Currency.Date
 import com.example.androiddevelopertest.Retrofit.Currency.RetrofitServicesCurrency
 import com.example.androiddevelopertest.databinding.ActivityMainBinding
-
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,18 +57,16 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.btChangeCurrencyGbp.setOnClickListener {
-            prefs.customCurrency = "R01035"
+            prefs.customCurrency = "GBP"
             getHistoryList(prefs)
         }
         binding.btChangeCurrencyEur.setOnClickListener {
-            prefs.customCurrency = "R01239"
+            prefs.customCurrency = "EUR"
             getHistoryList(prefs)
         }
         binding.btChangeCurrencyRub.setOnClickListener {
-            prefs.customCurrency = "R01090B"
+            prefs.customCurrency = "RUB"
             getHistoryList(prefs)
-        }
-        fun changeCurrencyBtColor(num: Int) {
         }
     }
 
@@ -77,27 +78,50 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<Users>, response: Response<Users>) {
                 val cardBase = response.body() as Users
-                adapter = Adapter(cardBase, prefs.cardUserNumber, prefs.customCurrency.toString())
-                binding.recyclerViewHistory.adapter = adapter
-                binding.ivCustomCardIcon.setImageResource(
-                    when (cardBase.users[prefs.cardUserNumber].type) {
-                        "mastercard" -> R.drawable.ic_mastercard
-                        "visa" -> R.drawable.ic_visa
-                        "unionpay" -> R.drawable.ic_unionpay
-                        else -> R.drawable.ic_custom_card_system
-                    }
-                )
-                binding.cardNumber.text = cardBase.users[prefs.cardUserNumber].card_number
-                binding.tvCustomUser.text = cardBase.users[prefs.cardUserNumber].cardholder_name
-                binding.tvValidThruNum.text = cardBase.users[prefs.cardUserNumber].valid
-                binding.yourBalanceUsd.text = "$" + cardBase.users[prefs.cardUserNumber].balance
-                binding.customBalanceInCurrency.text = when(prefs.customCurrency.toString()){
-                    "R01035" -> "£"
-                    "R01239" -> "€"
-                    "R01090B" -> "₽"
-                    else -> "- £"
-                }
+                Log.e(TAG, "response")
+                Log.e(TAG, response.toString())
+                getCurrencyList(prefs, cardBase)
             }
         })
+    }
+    private fun getCurrencyList(prefs: SharedPreferences, cardBase: Users) {
+        mServiceCurrency.getCurrencyData().enqueue(object : Callback<Date> {
+            override fun onFailure(call: Call<Date>, t: Throwable) {
+                Log.e(TAG, "getCurrencyList onFailure ")
+                Log.e(TAG, t.toString())
+            }
+
+            override fun onResponse(call: Call<Date>, response: Response<Date>) {
+                val currencyBase = response.body() as Date
+                //val currencyValue = currencyBase.Valute.AUD.Value
+                adapter = Adapter(cardBase, currencyBase, prefs.cardUserNumber, prefs.customCurrency.toString())
+                binding.recyclerViewHistory.adapter = adapter
+                changingActivityMain(prefs,cardBase,currencyBase)
+            }
+        })
+    }
+    private fun changingActivityMain (prefs: SharedPreferences, cardBase: Users, currencyBase: Date){
+        binding.ivCustomCardIcon.setImageResource(
+            when (cardBase.users[prefs.cardUserNumber].type) {
+                "mastercard" -> R.drawable.ic_mastercard
+                "visa" -> R.drawable.ic_visa
+                "unionpay" -> R.drawable.ic_unionpay
+                else -> R.drawable.ic_custom_card_system
+            }
+        )
+        binding.cardNumber.text = cardBase.users[prefs.cardUserNumber].card_number
+        binding.tvCustomUser.text = cardBase.users[prefs.cardUserNumber].cardholder_name
+        binding.tvValidThruNum.text = cardBase.users[prefs.cardUserNumber].valid
+        binding.yourBalanceUsd.text = "$" + cardBase.users[prefs.cardUserNumber].balance
+        var balanceInUSD: Double? = cardBase.users[prefs.cardUserNumber].balance
+        var USDCource: Double? = currencyBase.Valute.USD.Value
+        val balanceInRUB = balanceInUSD?.times(USDCource!!)
+        Log.e(TAG, balanceInRUB.toString())
+        binding.customBalanceInCurrency.text = when(prefs.customCurrency.toString()){
+            "GBP" -> "£"
+            "EUR" -> "€"
+            "RUB" -> "₽"
+            else -> "- £"
+        }
     }
 }

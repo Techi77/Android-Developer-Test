@@ -9,7 +9,7 @@ data class CardsInfo(
     var type: String? ,
     var cardholder_name: String? ,
     var valid: String? ,
-    var balance: String? ,
+    var balance: Double? ,
     var transaction_history: MutableList<HistoryInfo> ,
     var users: String?
 )
