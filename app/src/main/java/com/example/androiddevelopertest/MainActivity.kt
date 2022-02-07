@@ -1,5 +1,6 @@
 package com.example.androiddevelopertest
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,12 +27,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         mService = Common.retrofitService
-
-        binding.recyclerView.setHasFixedSize(true)
         layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.layoutManager = layoutManager
+
+        //History recycler
+        binding.recyclerViewHistory.setHasFixedSize(true)
+        binding.recyclerViewHistory.layoutManager = layoutManager
 
         getHistoryList()
+
+        binding.clCardContainer.setOnClickListener {
+            val intent = Intent(this@MainActivity, MyCardsScreen::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getHistoryList() {
@@ -43,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Users>, response: Response<Users>) {
                 val cardBase = response.body() as Users
                 adapter = Adapter(response.body() as Users)
-                binding.recyclerView.adapter = adapter
+                binding.recyclerViewHistory.adapter = adapter
                 binding.cardNumber.text = cardBase.users[0].card_number
                 binding.tvCustomUser.text = cardBase.users[0].cardholder_name
                 binding.tvValidThruNum.text = cardBase.users[0].valid
