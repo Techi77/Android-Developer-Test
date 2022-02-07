@@ -51,6 +51,14 @@ class MainActivity : AppCompatActivity() {
                 val cardBase = response.body() as Users
                 adapter = Adapter(response.body() as Users)
                 binding.recyclerViewHistory.adapter = adapter
+                binding.ivCustomCardIcon.setImageResource(
+                    when(cardBase.users[0].type){
+                        "mastercard" -> R.drawable.ic_mastercard
+                        "visa" -> R.drawable.ic_visa
+                        "unionpay" -> R.drawable.ic_unionpay
+                        else -> R.drawable.ic_custom_card_system
+                    }
+                )
                 binding.cardNumber.text = cardBase.users[0].card_number
                 binding.tvCustomUser.text = cardBase.users[0].cardholder_name
                 binding.tvValidThruNum.text = cardBase.users[0].valid
